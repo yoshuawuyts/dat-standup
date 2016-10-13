@@ -1,0 +1,22 @@
+{
+  "name": "dat-standup",
+  "description": "Replicate standup messages using Dat",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "./scripts/start",
+    "test": "./scripts/test"
+  },
+  "dependencies": {
+    "bole": "^3.0.1",
+    "dat-js": "^3.6.0",
+    "envobj": "^1.0.2",
+    "node-cron": "^1.1.2",
+    "sendgrid": "^4.5.0"
+  },
+  "devDependencies": {
+    "dependency-check": "^2.6.0",
+    "standard": "^8.4.0",
+    "standard-markdown": "^2.2.0"
+  }
+}
