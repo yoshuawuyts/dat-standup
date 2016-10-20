@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const cron = require('node-cron')
 const envobj = require('envobj')
 // const dat = require('dat-js')
@@ -7,7 +9,8 @@ const createEmailReceiver = require('./lib/receive-email')
 
 // setup
 const env = envobj({
-  SENDGRID_KEY: String
+  SENDGRID_KEY: String,
+  PORT: 8080
 })
 
 // start
@@ -16,12 +19,15 @@ main(env)
 // main loop
 // obj -> null
 function main (opts) {
-  // send email every weekday at midnight
+  // send standup email every weekday at midnight
   const sendEmail = createEmailProvider(opts.SENDGRID_KEY)
   cron.schedule('0 0 * * 0-5', () => sendEmail(createEmail()))
 
-  const receiveEmail = createEmailReceiver(opts.SENDGRID_KEY)
-  receiveEmail()
+  // setup http server for incoming webhooks
+  const emailServer = createEmailReceiver(function (mail) {
+    console.info('new email received', JSON.stringify(mail))
+  })
+  emailServer.listen(opts.PORT)
 }
 
 // create a new email to be sent through sendgrid

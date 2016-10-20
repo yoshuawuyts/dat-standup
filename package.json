@@ -8,8 +8,11 @@
     "test": "./scripts/test"
   },
   "dependencies": {
+    "body": "^5.1.0",
     "bole": "^3.0.1",
+    "busboy": "^0.2.13",
     "dat-js": "^3.6.0",
+    "duplexify": "^3.4.5",
     "envobj": "^1.0.2",
     "node-cron": "^1.1.2",
     "sendgrid": "^4.5.0"
@@ -18,5 +21,8 @@
     "dependency-check": "^2.6.0",
     "standard": "^8.4.0",
     "standard-markdown": "^2.2.0"
+  },
+  "bin": {
+    "dat-standup": "./index.js"
   }
 }
