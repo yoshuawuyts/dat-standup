@@ -20,14 +20,20 @@ main(env)
 // obj -> null
 function main (opts) {
   // send standup email every weekday at midnight
+  const schedule = '0 0 * * 0-5'
   const sendEmail = createEmailProvider(opts.SENDGRID_KEY)
-  cron.schedule('0 0 * * 0-5', () => sendEmail(createEmail()))
+  cron.schedule(schedule, () => sendEmail(createEmail(), (err, ret) => {
+    if (err) return console.error(err)
+    console.info(JSON.stringify(ret))
+  }))
 
   // setup http server for incoming webhooks
-  const emailServer = createEmailReceiver(function (mail) {
+  const server = createEmailReceiver((mail) => {
     console.info('new email received', JSON.stringify(mail))
   })
-  emailServer.listen(opts.PORT)
+  server.listen(opts.PORT, (port) => {
+    console.info(`listening for incoming emails on port: ${port}`)
+  })
 }
 
 // create a new email to be sent through sendgrid

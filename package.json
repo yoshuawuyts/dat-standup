@@ -9,13 +9,14 @@
   },
   "dependencies": {
     "body": "^5.1.0",
-    "bole": "^3.0.1",
-    "busboy": "^0.2.13",
+    "concat-stream": "^1.5.2",
     "dat-js": "^3.6.0",
-    "duplexify": "^3.4.5",
     "envobj": "^1.0.2",
+    "multipart-read-stream": "^1.0.0",
     "node-cron": "^1.1.2",
-    "sendgrid": "^4.5.0"
+    "pump": "^1.0.1",
+    "sendgrid": "^4.5.0",
+    "server-router": "^3.0.0"
   },
   "devDependencies": {
     "dependency-check": "^2.6.0",
